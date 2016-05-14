@@ -2,13 +2,25 @@ package com.e_clinic.domain;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+@Entity
 public class MedicalRecord {
-
+	@Id
+	@GeneratedValue
 	private int id;
-	private int patientId;
-	private int doctorId;
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	private Patient patientId;
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	private Doctor doctorId;
 	private String sickness;
 	private String medication;
+	@Temporal(TemporalType.DATE)
 	private Date date;
 
 	public MedicalRecord() {
@@ -24,19 +36,19 @@ public class MedicalRecord {
 		this.id = id;
 	}
 
-	public int getPatientId() {
+	public Patient getPatientId() {
 		return patientId;
 	}
 
-	public void setPatientId(int patientId) {
+	public void setPatientId(Patient patientId) {
 		this.patientId = patientId;
 	}
 
-	public int getDoctorId() {
+	public Doctor getDoctorId() {
 		return doctorId;
 	}
 
-	public void setDoctorId(int doctorId) {
+	public void setDoctorId(Doctor doctorId) {
 		this.doctorId = doctorId;
 	}
 

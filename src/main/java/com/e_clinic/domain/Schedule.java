@@ -2,11 +2,23 @@ package com.e_clinic.domain;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+@Entity
 public class Schedule {
-
+	@Id
+	@GeneratedValue
 	private int id;
-	private int doctorId;
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	private Doctor doctorId;
+	@Temporal(TemporalType.DATE)
 	private Date date;
+	@Temporal(TemporalType.TIME)
 	private Date time;
 	boolean available;
 
@@ -23,11 +35,11 @@ public class Schedule {
 		this.id = id;
 	}
 
-	public int getDoctorId() {
+	public Doctor getDoctorId() {
 		return doctorId;
 	}
 
-	public void setDoctorId(int doctorId) {
+	public void setDoctorId(Doctor doctorId) {
 		this.doctorId = doctorId;
 	}
 

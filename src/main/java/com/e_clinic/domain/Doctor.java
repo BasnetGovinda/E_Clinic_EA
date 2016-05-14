@@ -1,14 +1,29 @@
 package com.e_clinic.domain;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+@Entity
 public class Doctor {
+	@Id 
+	@GeneratedValue
 	private int id;
 	private String lastName;
 	private String firstName;
+	@Temporal(TemporalType.DATE)
 	private Date dateOfBirth;
 	private String sepcialization;
 	private String email;
+	@OneToMany(mappedBy = "doctorId")
+	private List<Appointment> appointment;
+	@OneToMany(mappedBy = "doctorId")
+	private List<Schedule> schedule;
 
 	public Doctor() {
 		super();
@@ -60,6 +75,22 @@ public class Doctor {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public List<Appointment> getAppointment() {
+		return appointment;
+	}
+
+	public void setAppointment(List<Appointment> appointment) {
+		this.appointment = appointment;
+	}
+
+	public List<Schedule> getSchedule() {
+		return schedule;
+	}
+
+	public void setSchedule(List<Schedule> schedule) {
+		this.schedule = schedule;
 	}
 
 }

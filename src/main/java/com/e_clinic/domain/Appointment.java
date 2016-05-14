@@ -2,12 +2,26 @@ package com.e_clinic.domain;
 
 import java.util.Date;
 
-public class Appointment {
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+@Entity
+public class Appointment {
+	@Id
+	@GeneratedValue
 	private int id;
-	private int patientId;
-	private int doctorId;
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	private Appointment patientId;
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	private Doctor doctorId;
+	@Temporal(TemporalType.DATE)
 	private Date appointmentDate;
+	@Temporal(TemporalType.TIME)
 	private Date appointmentTime;
 
 	public Appointment() {
@@ -22,19 +36,19 @@ public class Appointment {
 		this.id = id;
 	}
 
-	public int getPatientId() {
+	public Appointment getPatientId() {
 		return patientId;
 	}
 
-	public void setPatientId(int patientId) {
+	public void setPatientId(Appointment patientId) {
 		this.patientId = patientId;
 	}
 
-	public int getDoctorId() {
+	public Doctor getDoctorId() {
 		return doctorId;
 	}
 
-	public void setDoctorId(int doctorId) {
+	public void setDoctorId(Doctor doctorId) {
 		this.doctorId = doctorId;
 	}
 
