@@ -12,10 +12,10 @@ public class HomeController {
 	}
 	
 	
-	@RequestMapping("/test")
-	public String home2() {
-		return "index";
-	}
+//	@RequestMapping("/test")  
+//	public String home2() {
+//		return "index";
+//	}
 	
 	
 }
