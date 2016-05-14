@@ -7,7 +7,7 @@ public class MedicalRecord_DAO implements IMedicalRecordDao{
 	@Override
 	public void add(MedicalRecord medicalRecord) {
 		// TODO Auto-generated method stub
-		
+		 
 	}
 
 	@Override
