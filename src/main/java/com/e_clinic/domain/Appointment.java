@@ -16,7 +16,7 @@ public class Appointment {
 	@GeneratedValue
 	private int id;
 	@ManyToOne(cascade = CascadeType.PERSIST)
-	private Appointment patientId;
+	private Patient patientId;
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Doctor doctorId;
 	@Temporal(TemporalType.DATE)
@@ -36,11 +36,11 @@ public class Appointment {
 		this.id = id;
 	}
 
-	public Appointment getPatientId() {
+	public Patient getPatientId() {
 		return patientId;
 	}
 
-	public void setPatientId(Appointment patientId) {
+	public void setPatientId(Patient patientId) {
 		this.patientId = patientId;
 	}
 
