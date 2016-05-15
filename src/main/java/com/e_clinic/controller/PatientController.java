@@ -47,7 +47,7 @@ public class PatientController {
 
 		patientService.save(patient);
 
-		return "redirect:/list";
+		return "redirect:/patient/list";
 		// System.out.println("test");
 	}
 

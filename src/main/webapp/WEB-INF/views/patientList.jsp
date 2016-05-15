@@ -7,6 +7,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<script>
+	function confirmDelete(url) {
+		if (confirm("Are you sure you want to delete this?")) {
+			window.open(url);
+		} else {
+			false;
+		}
+	}
+</script>
 </head>
 <body>
 
@@ -39,7 +48,8 @@
 				<td>${patient.email}</td>
 				<td>${patient.phoneNo}</td>
 				<td><a href="update/${patient.id}">edit</a></td>
-				<td><a href="delete/${patient.id}">delete</a></td>
+				<td><a href="delete/${patient.id}"
+					onClick="return confirm('Are you sure?');">delete</a></td>
 
 			</tr>
 		</c:forEach>
