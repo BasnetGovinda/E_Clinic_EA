@@ -5,18 +5,27 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Patient {
-	@Id 
-	@GeneratedValue
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String lastName;
+
+	@Transient
+	private String tempdate;
 	private String firstName;
-	@Temporal(TemporalType.DATE)
+	// @DateTimeFormat(pattern = "MM/dd/yyyy")
+	// @Temporal(TemporalType.DATE)
 	private Date dateOfBirth;
 	private double height;
 	private double weight;
@@ -25,8 +34,32 @@ public class Patient {
 	private long phoneNo;
 	@OneToMany(mappedBy = "patientId")
 	private List<MedicalRecord> medicalRecord;
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	@OneToMany(mappedBy = "patientId")
 	private List<Appointment> appointment;
+
+	public Patient(String lastName, String tempdate, String firstName, double height, double weight, String bloodType,
+			String email, long phoneNo) {
+		this.lastName = lastName;
+		this.tempdate = tempdate;
+		this.firstName = firstName;
+		this.height = height;
+		this.weight = weight;
+		this.bloodType = bloodType;
+		this.email = email;
+		this.phoneNo = phoneNo;
+	}
+
+	public String getTempdate() {
+		return tempdate;
+	}
+
+	public void setTempdate(String tempdate) {
+		this.tempdate = tempdate;
+	}
 
 	public Patient() {
 		super();
@@ -34,10 +67,6 @@ public class Patient {
 
 	public int getId() {
 		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getLastName() {
