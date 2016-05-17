@@ -7,41 +7,50 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Add Patient </title>
 </head>
 <body>
 
+<div style="padding-left: 400px; padding-top:130pt; font: menu;">
+<h1> Patients Registration Form </h1>
+
+<table>
 	<form:form modelAttribute="patientForm"
 		action="${pageContext.request.contextPath}/patient/add" method="POST">
-		<label>First Name</label>
-		<form:input path="firstName" />
-		<br />
-		<label>Last Name</label>
-		<form:input path="lastName" />
-		<br />
-		<label>Date of Birth</label>
-		<form:input type="date" path="tempdate" />
-		<br />
-		<label>E-mail</label>
-		<form:input path="email" />
-		<br />
-		<label>Blood Group</label>
-		<form:input path="bloodType" />
-		<br />
-		<label>Phone Number </label>
-		<form:input path="phoneNo" />
-		<br />
-		<label>Weight</label>
-		<form:input path="weight" />
-		<br />
-		<label>height</label>
-		<form:input path="height" />
-		<br />
+		
+		<tr> <td> <label>First Name</label></td>
+		<td><form:input path="firstName" /> </td></tr>
+		
+		
+		<tr> <td> <label>Last Name</label></td>
+		<td><form:input path="lastName" /></td></tr>
+		
+		
+		<tr> <td> <label>Date of Birth</label></td>
+		<td><form:input type="date" path="tempdate" /> </td></tr>
+		
+		<tr> 
+		<td> <label>E-mail</label></td>
+		<td><form:input path="email" /></td>
+		</tr>
+		
+		<tr> <td> <label>Blood Group</label></td>
+		<td><form:input path="bloodType" /></td></tr>
+		
+		<tr> <td> <label>Phone Number </label></td>
+		<td><form:input path="phoneNo" /></td></tr>
+		
+		<tr> <td> <label>Weight</label></td>
+		<td><form:input path="weight" /></td></tr>
+		
+		<tr> <td> <label>height</label></td>
+		<td><form:input path="height" /></td></tr>
 
-		<button type="submit">Add Patient</button>
+		<tr> <td> <button type="submit">Add Patient</button></td>
+		</tr>
 
 	</form:form>
-
-
+</table>
+</div>
 </body>
 </html>

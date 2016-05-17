@@ -19,5 +19,7 @@
                       <sec:authorize access="hasRole('ROLE_USER')" >
                         <a href="records/patient/3"> Medical Records </a>
                       </sec:authorize>
+                      
+                      <a href="j_spring_security_logout">logout</a>
     </body>
 </html>

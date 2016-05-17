@@ -45,7 +45,6 @@ public class MedicalRecordController {
 	@RequestMapping(value = "/doctor/{id}/patientsList", method = RequestMethod.GET)
 	public String forDoctor(@PathVariable int id, Model model) {
 		
-		
 		return "redirect:/patient/list";
 	}
 	
@@ -76,6 +75,7 @@ public class MedicalRecordController {
 		model.addAttribute("recordForm", record);
 		model.addAttribute("patient_id", id);
 		model.addAttribute("doctor_id", doctor_id);
+		model.addAttribute("patient_name", patientService.find(id).getFirstName());
 
 		return "records/addRecords";
 	}
@@ -111,11 +111,13 @@ public class MedicalRecordController {
 	public String getPatientlist(@PathVariable int doctor_id, @PathVariable int id, Model model) {
 		System.out.println("---------");
 		List<MedicalRecord> records = medicalRecordService.getallData();
-		JOptionPane.showMessageDialog(null, "record of "+doctor_id+", patient = "+id);
+		
+		Patient p = patientService.find(id);
 		
 		model.addAttribute("record", records);
 		model.addAttribute("patient_id", id);
 		model.addAttribute("doctor_id", doctor_id);
+		model.addAttribute("patient_name", p.getFirstName());
 		
 		return "records/listRecords";
 	}

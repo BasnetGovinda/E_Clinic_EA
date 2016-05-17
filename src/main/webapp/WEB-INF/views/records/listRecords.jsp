@@ -56,8 +56,9 @@
 	</table>
 
                       <sec:authorize access="hasRole('ROLE_ADMIN')" >
-                         <a href="add/${patient_id}"> Add Record for ${patient_id}, ${doctor_id}</a>
+                         <a href="add/${patient_id}"> Add Record for --> ${patient_name}</a>
                       </sec:authorize>
 
+<a href="j_spring_security_logout">logout</a>
 </body>
 </html>

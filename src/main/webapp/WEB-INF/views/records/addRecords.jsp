@@ -11,9 +11,9 @@
 </head>
 <body>
 
-<h1>Add Medical Record for ${patient_id}</h1>
+<h1>Add Medical Record for ${patient_name}</h1>
 	<form:form modelAttribute="recordForm"
-		action="${pageContext.request.contextPath}/patient/records/list/${doctor_id}/add/${patient_id}" method="POST">
+		action="${pageContext.request.contextPath}/records/patient/list/${doctor_id}/add/${patient_id}" method="POST">
 		<label>Sickness </label>
 		<form:input path="sickness" />
 		<br />
@@ -30,5 +30,6 @@
 
 	</form:form>
 
+<a href="j_spring_security_logout">logout</a>
 </body>
 </html>

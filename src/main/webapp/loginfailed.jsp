@@ -8,7 +8,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Login failure!</h1>
+        <h1 style="color: red;">Username or password is incorrect</h1>
         <p>Please <a href="login.jsp">login</a>
     </body>
 </html>

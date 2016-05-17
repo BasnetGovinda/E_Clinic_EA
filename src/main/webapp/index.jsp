@@ -5,10 +5,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <title>JSP Page</title>
+        <title>Home Page</title>
     </head>
     <body>
-        <h1>Welcome</h1>
-        <p>Please <a href="login.jsp">login</a>
+    
+    <div  style="padding-left: 400px; font: menu; padding-top: 130pt;">
+        <h1>Clinic Appointment</h1>
+         <a style="font-size: 20px;" href="login.jsp">login </a><br/>
+          <a href="patient/add" style="font-size: 20px;">Register </a> 
+         </div>
     </body>
 </html>

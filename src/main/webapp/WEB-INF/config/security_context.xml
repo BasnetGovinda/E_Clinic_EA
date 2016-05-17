@@ -14,11 +14,14 @@
     <http pattern="/index.jsp" security="none" />
     
     <http>
-        <!-- <intercept-url pattern="/**" method="POST" access="ROLE_ADMIN"/> -->
+        <intercept-url pattern="/**" method="POST" access="IS_AUTHENTICATED_ANONYMOUSLY"/> 
         <intercept-url pattern="/home" method="GET" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <intercept-url pattern="/patient/**" method="GET" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <intercept-url pattern="/patient/add" method="POST" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <intercept-url pattern="/records/doctor/**" method="GET" access="IS_AUTHENTICATED_ANONYMOUSLY" />
         <intercept-url pattern="/login.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/loginfailed.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-        <intercept-url pattern="/**" access="IS_AUTHENTICATED_ANONYMOUSLY" method="GET" />
+        <intercept-url pattern="/**" access="ROLE_USER" method="GET" />
         <form-login login-page="/login.jsp" authentication-failure-url="/loginfailed.jsp" 
                     default-target-url="/home"/>
         <logout logout-success-url="/login.jsp"/>
