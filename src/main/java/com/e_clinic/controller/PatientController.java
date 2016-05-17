@@ -1,6 +1,5 @@
 package com.e_clinic.controller;
 
-import java.io.Console;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.e_clinic.domain.Patient;
 import com.e_clinic.service.PatientService;
-import com.mysql.fabric.xmlrpc.base.Data;
 
 @Controller
 @RequestMapping(value = "/patient")
@@ -36,6 +34,12 @@ public class PatientController {
 		Patient pat = new Patient();
 		model.addAttribute("patientForm", pat);
 		return "patient/addPatient";
+
+	}
+	
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public String home(Model model) {
+		return "patient/home";
 
 	}
 
@@ -72,6 +76,12 @@ public class PatientController {
 
 		model.addAttribute("patient", pp);
 		return "/updatePatient";
+
+	}
+	
+	@RequestMapping(value = "/records/{id}", method = RequestMethod.GET)
+	public String records(@PathVariable int id, Model model) {
+		return "redirect:/records/patient/"+id;
 
 	}
 

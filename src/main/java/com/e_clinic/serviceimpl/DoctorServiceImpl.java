@@ -7,22 +7,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.e_clinic.dao.PatientDao;
-import com.e_clinic.domain.Patient;
-import com.e_clinic.service.PatientService;
+import com.e_clinic.dao.DoctorDao;
+import com.e_clinic.domain.Doctor;
+import com.e_clinic.service.DoctorService;
 
 @Service
 @Transactional
-public class PatientServiceImpl implements PatientService {
+public class DoctorServiceImpl implements DoctorService {
 
 	@Autowired
-	private PatientDao patientDAO;
+	private DoctorDao doctorDAO;
 
 	@Override
-	public void save(Patient patient) {
+	public void save(Doctor doctor) {
 		// TODO Auto-generated method stub
-		// Patient p = pp;
-		String ss = patient.getTempdate();
+		// Doctor p = pp;
+/*		String ss = doctor.getTempdate();
 		String[] test = ss.split("-");
 
 		// String newdate = test[2] + "/" + test[1] + "/" + test[0];
@@ -33,34 +33,34 @@ public class PatientServiceImpl implements PatientService {
 
 		Date dd = new Date(year, month, day);
 		System.out.println(dd);
-		patient.setDateOfBirth(dd);
-		patientDAO.save(patient);
+		doctor.setDateOfBirth(dd);*/
+		doctorDAO.save(doctor);
 
 	}
 
 	@Override
-	public List<Patient> getallData() {
+	public List<Doctor> getallData() {
 		// TODO Auto-generated method stub
-		return patientDAO.findAll();
+		return doctorDAO.findAll();
 
 	}
 
 	@Override
-	public Patient find(int id) {
+	public Doctor find(int id) {
 		// TODO Auto-generated method stub
-		return patientDAO.findOne(id);
+		return doctorDAO.findOne(id);
 	}
 
 	@Override
-	public void update(Patient patient) {
-		patientDAO.update(patient);
+	public void update(Doctor doctor) {
+		doctorDAO.update(doctor);
 
 	}
 
 	@Override
 	public void delete(int id) {
 		// TODO Auto-generated method stub
-		patientDAO.delete(id);
+		doctorDAO.delete(id);
 	}
 
 }

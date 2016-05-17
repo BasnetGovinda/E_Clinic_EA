@@ -50,6 +50,7 @@
 				<td><a href="update/${patient.id}">edit</a></td>
 				<td><a href="delete/${patient.id}"
 					onClick="return confirm('Are you sure?');">delete</a></td>
+					<td><a href="records/${patient.id}"> Medical Records </a></td>
 
 			</tr>
 		</c:forEach>

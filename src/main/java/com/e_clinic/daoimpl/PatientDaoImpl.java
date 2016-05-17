@@ -2,14 +2,14 @@ package com.e_clinic.daoimpl;
 
 import org.springframework.stereotype.Repository;
 
-import com.e_clinic.dao.PatientDao;
-import com.e_clinic.domain.Patient;
+import com.e_clinic.dao.DoctorDao;
+import com.e_clinic.domain.Doctor;
 
 @Repository
-public class PatientDaoImpl extends GenericDaoImpl<Patient> implements PatientDao {
+public class PatientDaoImpl extends GenericDaoImpl<Doctor> implements DoctorDao {
 
 	public PatientDaoImpl() {
-		super.setDaoType(Patient.class);
+		super.setDaoType(Doctor.class);
 	}
 	
 }
