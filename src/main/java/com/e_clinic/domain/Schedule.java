@@ -1,5 +1,6 @@
 package com.e_clinic.domain;
 
+
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -9,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+
+
 @Entity
 public class Schedule {
 	@Id
@@ -16,10 +20,15 @@ public class Schedule {
 	private int id;
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Doctor doctorId;
-	@Temporal(TemporalType.DATE)
+	//@Temporal(TemporalType.DATE)
 	private Date date;
+	
+	@Transient
+	private String tempdate;
+	
 	@Temporal(TemporalType.TIME)
 	private Date time;
+	
 	boolean available;
 
 	public Schedule() {
@@ -66,5 +75,15 @@ public class Schedule {
 	public void setAvailable(boolean available) {
 		this.available = available;
 	}
+
+	public String getTempdate() {
+		return tempdate;
+	}
+
+	public void setTempdate(String tempdate) {
+		this.tempdate = tempdate;
+	}
+	
+	
 
 }

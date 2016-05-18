@@ -1,5 +1,6 @@
 package com.e_clinic.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -17,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.e_clinic.domain.Doctor;
 import com.e_clinic.domain.Patient;
 import com.e_clinic.domain.User;
+import com.e_clinic.service.IDoctorService;
 import com.e_clinic.service.PatientService;
 import com.e_clinic.service.UserService;
 
@@ -31,6 +34,9 @@ public class PatientController {
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private IDoctorService doctorService;
 	
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
@@ -42,6 +48,7 @@ public class PatientController {
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String getPatient(Model model) {
 		Patient pat = new Patient();
+		pat.setDateOfBirth(new Date());
 		model.addAttribute("patientForm", pat);
 		return "patient/addPatient";
 
@@ -56,12 +63,13 @@ public class PatientController {
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String addPatientPost(@ModelAttribute("patientForm") Patient patient, @RequestParam("un") String un , @RequestParam("pw") String pw) {
 
-		JOptionPane.showMessageDialog(null, un);
-
-		userService.save(new User(un,pw));
+		User user = new User(un, pw, "ROLE_USER", true);
+		user.setpId(patient);
+		
 		patientService.save(patient);
+		userService.save(user);
 
-		return "redirect:/patient/list";
+		return "redirect:/home";
 	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -71,11 +79,6 @@ public class PatientController {
 
 		model.addAttribute("patient", pp);
 
-	      Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	      String name = auth.getName(); //get logged in username
-			
-	      JOptionPane.showMessageDialog(null, name);
-	      
 		return "patientList";
 	}
 
@@ -106,6 +109,7 @@ public class PatientController {
 
 	}
 
+	
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	public String deletePatient(@PathVariable int id) {
 		patientService.delete(id);

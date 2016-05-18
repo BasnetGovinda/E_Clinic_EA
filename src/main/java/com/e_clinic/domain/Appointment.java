@@ -19,13 +19,20 @@ public class Appointment {
 	private Patient patientId;
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Doctor doctorId;
-	@Temporal(TemporalType.DATE)
+	//@Temporal(TemporalType.DATE)
 	private Date appointmentDate;
-	@Temporal(TemporalType.TIME)
-	private Date appointmentTime;
+	//@Temporal(TemporalType.TIME)
+	//private Date appointmentTime;
 
 	public Appointment() {
 		super();
+	}
+
+	public Appointment(Patient patientId, Doctor doctorId, Date appointmentDate) {
+		super();
+		this.patientId = patientId;
+		this.doctorId = doctorId;
+		this.appointmentDate = appointmentDate;
 	}
 
 	public int getId() {
@@ -60,12 +67,12 @@ public class Appointment {
 		this.appointmentDate = appointmentDate;
 	}
 
-	public Date getAppointmentTime() {
+/*	public Date getAppointmentTime() {
 		return appointmentTime;
 	}
 
 	public void setAppointmentTime(Date appointmentTime) {
 		this.appointmentTime = appointmentTime;
 	}
-
+*/
 }

@@ -45,6 +45,16 @@
 		</property>
 	</bean>
 
+	<bean id="doctorController" class="com.e_clinic.controller.DoctorController" />
+	<bean id="doctorDao" class="com.e_clinic.daoimpl.Doctor_DAO" />
+	<bean id="doctorService" class="com.e_clinic.serviceimpl.DoctorServiceImpl" />
+	<bean id="doctor" class="com.e_clinic.domain.Doctor" />
+
+	<bean id="scheduleController" class="com.e_clinic.controller.ScheduleController" />
+	<bean id="scheduleDao" class="com.e_clinic.daoimpl.ScheduleDAO" />
+	<bean id="scheduleService" class="com.e_clinic.serviceimpl.ScheduleService" />
+	<bean id="schedule" class="com.e_clinic.domain.Schedule" />
+	
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory"></property>
 	</bean>

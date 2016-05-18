@@ -19,20 +19,25 @@
 </head>
 <body>
 
-	<table>
+		<div style="margin-left: 100px; margin-top:50pt; font: menu; font-size: larger;">  
+<h1> Patients List </h1>
+
+	 <a  style="margin-left: 1400px; margin-top:130pt;  font: menu; font-size:medium;" href="/E_Clinic_EA/j_spring_security_logout">logout</a>
+
+	<table style="border: medium;">
 		<thead>
 			<tr>
-				<th>First Name</th>
-				<th>Last Name</th>
-				<th>Date of Birth</th>
-				<th>Height</th>
-				<th>Weight</th>
-				<th>Blood</th>
-				<th>Email</th>
+				<th style="padding-right: 20pt;">First Name</th>
+				<th style="padding-right: 20pt;">Last Name</th>
+				<th style="padding-right: 80pt;">Date of Birth</th>
+				<th style="padding-right: 50pt;">Height</th>
+				<th style="padding-right: 20pt;">Weight</th>
+				<th style="padding-right: 20pt;">Blood</th>
+				<th style="padding-right: 20pt;">Email</th>
 
-				<th>Phone</th>
-				<th>Edit</th>
-				<th>Delete</th>
+				<th style="padding-right: 20pt;">Phone</th>
+				<th style="padding-right: 20pt;">Edit</th>
+				<th style="padding-right: 20pt;">Delete</th>
 
 			</tr>
 		</thead>
@@ -54,8 +59,8 @@
 
 			</tr>
 		</c:forEach>
+		
 	</table>
-
-<a href="/E_Clinic_EA/j_spring_security_logout">logout</a>
+</div>
 </body>
 </html>

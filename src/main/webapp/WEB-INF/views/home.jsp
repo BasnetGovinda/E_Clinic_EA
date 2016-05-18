@@ -10,16 +10,42 @@
         <title>HOME</title>
     </head>
     <body>
-    <a href="doctor/1/patientsList"> Appointmetns </a>
-    <br/>
-                      <sec:authorize access="hasRole('ROLE_ADMIN')" >
-                        <a href="records/doctor/1/patientsList"> Patients List </a>
-                      </sec:authorize>
-                      <br/>
-                      <sec:authorize access="hasRole('ROLE_USER')" >
-                        <a href="records/patient/3"> Medical Records </a>
+    
+		<div style="margin-left: 400px; margin-top:130pt; font: menu; font-size: larger;">  
+		
+    					<sec:authorize access="hasRole('ROLE_ADMIN')" >
+                        <h2> Welcome, Doctor ${user}</h2>
                       </sec:authorize>
                       
-                      <a href="j_spring_security_logout">logout</a>
+                      <sec:authorize access="hasRole('ROLE_USER')" >
+                       <h2> Welcome, ${user}  We wish you a good luck!</h2>
+                      </sec:authorize>
+                   
+                   <table>
+                   <tr>
+                   
+                         <td>
+  							  <a href="showSchedule"  style="margin-right: 20pt;"> My Schedules </a> </td>
+  						<td>
+  						
+                       <td>
+  							  <a href="appointment/getlistofappointment"  style="margin-right: 20pt;"> Appointmetns </a> </td>
+  						<td>	  
+                      <sec:authorize access="hasRole('ROLE_ADMIN')" >
+                        <a href="records/doctor/1/patientsList" style="margin-right: 20pt;"> Patients List </a> 
+                      </sec:authorize>
+                      </td>
+                      
+                      <td>
+                      <sec:authorize access="hasRole('ROLE_USER')" >
+                        <a href="records/patient/3"  style="margin-right: 20pt;"> Medical Records </a>
+                      </sec:authorize>
+                      <a href="j_spring_security_logout" >logout</a>
+                      
+                      </td>
+                      </tr>
+                      </table>   
+                      </div>
     </body>
+    
 </html>

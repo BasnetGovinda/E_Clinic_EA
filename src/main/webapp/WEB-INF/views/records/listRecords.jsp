@@ -21,14 +21,22 @@
 </head>
 <body>
 
+<div style="margin-left: 400px; margin-top:130pt; font: menu; font-size: larger;">   
+
+<div  style="margin-bottom: 20pt;">
+		    <b style="margin-bottom: 30pt; font-size: larger;">Medical Records</b>
+		    <br/>
+		    <b style="padding-top: 10pt; color: green;">  Patient Name: ${patient_name}</b>
+<a  style="margin-left: 200px; margin-top:130pt; font: menu; font-size:medium;" href="/E_Clinic_EA/j_spring_security_logout">logout</a>
+</div>
 	<table>
 		<thead>
 			<tr>
-				<th> Following Doctor          </th>
-				<th> Sickness          </th>
-				<th> Medication          </th>
-				<th> Date          </th>
-				<th>  </th>
+				<th style="padding-right: 25pt;"> Following Doctor          </th>
+				<th style="padding-right: 25pt;"> Sickness          </th>
+				<th style="padding-right: 25pt;"> Medication          </th>
+				<th style="padding-right: 25pt;"> Date          </th>
+				<th style="padding-right: 25pt;">  </th>
 				<th>  </th>
 
 			</tr>
@@ -55,10 +63,10 @@
 		</c:forEach>
 	</table>
 
+</div>
                       <sec:authorize access="hasRole('ROLE_ADMIN')" >
-                         <a href="add/${patient_id}"> Add Record for --> ${patient_name}</a>
+                         <a  style="margin-left: 400px; margin-top:130pt; font: menu; font-size: larger;" href="add/${patient_id}"> Add Record</a>
                       </sec:authorize>
 
-<a href="j_spring_security_logout">logout</a>
 </body>
 </html>

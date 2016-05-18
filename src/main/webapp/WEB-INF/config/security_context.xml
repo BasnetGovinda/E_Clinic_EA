@@ -2,39 +2,50 @@
 <beans:beans xmlns="http://www.springframework.org/schema/security"
 	xmlns:beans="http://www.springframework.org/schema/beans" 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    	xmlns:security="http://www.springframework.org/schema/security"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
-    <debug />
-    <global-method-security secured-annotations="enabled"/>
-    <beans:bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" /> 
+    <security:global-method-security pre-post-annotations="enabled"/>
     
-    <http pattern="/index.jsp" security="none" />
+    <security:http pattern="/index.jsp" security="none" />
+    <debug/>
     
-    <http>
-        <intercept-url pattern="/**" method="POST" access="IS_AUTHENTICATED_ANONYMOUSLY"/> 
-        <intercept-url pattern="/home" method="GET" access="IS_AUTHENTICATED_ANONYMOUSLY" />
-        <intercept-url pattern="/patient/add" method="POST" access="IS_AUTHENTICATED_ANONYMOUSLY" />
-          <intercept-url pattern="/patient/list" method="GET" access="ROLE_ADMIN" />
-        <intercept-url pattern="/records/doctor/**" method="GET" access="IS_AUTHENTICATED_ANONYMOUSLY" />
-        <intercept-url pattern="/login.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-        <intercept-url pattern="/loginfailed.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-        <intercept-url pattern="/**" access="ROLE_USER" method="GET" />
-        <form-login login-page="/login.jsp" authentication-failure-url="/loginfailed.jsp" 
+    <security:http use-expressions="true">
+       <!--  <security:intercept-url pattern="/home" method="GET" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <security:intercept-url pattern="/patient/add" method="POST" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+          <security:intercept-url pattern="/patient/list" method="GET" access="ROLE_ADMIN" />
+        <security:intercept-url pattern="/records/doctor/**" method="GET" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <security:intercept-url pattern="/login.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <security:intercept-url pattern="/loginfailed.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+ -->        
+        <security:form-login login-page="/login.jsp" 
+        			authentication-failure-url="/loginfailed.jsp" 
+        			password-parameter="password"
+					username-parameter="username"
                     default-target-url="/home"/>
-        <logout logout-success-url="/login.jsp"/>
-    </http>
+                    
+        <security:logout
+         logout-success-url="/login.jsp"/>
+    </security:http>
     
-    <authentication-manager>
-        <authentication-provider>
-            <password-encoder hash="plaintext" />
+        <beans:bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+    
+    <security:authentication-manager>
+        <security:authentication-provider>
+<!--             <password-encoder hash="plaintext" />
             <user-service>
                 <user name="a" password="a" authorities="ROLE_ADMIN" />
                 <user name="b" password="b" authorities="ROLE_USER" />
-            </user-service>
-        </authentication-provider>
-    </authentication-manager>
+            </user-service> -->
+            
+			<jdbc-user-service data-source-ref="dataSource"
+		  users-by-username-query=
+		    "select username,password, enabled, role from user where username=?" 
+		  authorities-by-username-query= "select username, role from user where username =?  " />		
+        </security:authentication-provider>
+    </security:authentication-manager>
 
 </beans:beans>

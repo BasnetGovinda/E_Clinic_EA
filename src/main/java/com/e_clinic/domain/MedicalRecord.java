@@ -14,9 +14,9 @@ public class MedicalRecord {
 	@Id
 	@GeneratedValue
 	private int id;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne//(cascade = CascadeType.MERGE)
 	private Patient patientId;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne//(cascade = CascadeType.MERGE)
 	private Doctor doctorId;
 	private String sickness;
 	private String medication;

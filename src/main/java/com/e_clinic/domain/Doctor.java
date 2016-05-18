@@ -4,11 +4,14 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Doctor {
 	@Id 
@@ -20,9 +23,11 @@ public class Doctor {
 	private Date dateOfBirth;
 	private String sepcialization;
 	private String email;
-	@OneToMany(mappedBy = "doctorId")
+	@OneToMany(mappedBy = "doctorId",fetch=FetchType.EAGER)
+	@JsonIgnore
 	private List<Appointment> appointment;
-	@OneToMany(mappedBy = "doctorId")
+	@OneToMany(mappedBy = "doctorId",fetch=FetchType.EAGER)
+	@JsonIgnore
 	private List<Schedule> schedule;
 
 	public Doctor() {
