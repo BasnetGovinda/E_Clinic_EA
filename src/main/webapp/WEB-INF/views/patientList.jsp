@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title> List Patients </title>
 <script>
 	function confirmDelete(url) {
 		if (confirm("Are you sure you want to delete this?")) {
@@ -56,6 +56,6 @@
 		</c:forEach>
 	</table>
 
-<a href="j_spring_security_logout">logout</a>
+<a href="/E_Clinic_EA/j_spring_security_logout">logout</a>
 </body>
 </html>

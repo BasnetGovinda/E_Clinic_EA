@@ -15,7 +15,7 @@ import javax.persistence.Transient;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-public class Patient {
+public class Patient{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

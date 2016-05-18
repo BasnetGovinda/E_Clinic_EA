@@ -20,7 +20,6 @@
 			<artifactId>tiles-core</artifactId>
 			<version>${apache.tiles.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.apache.tiles</groupId>
 			<artifactId>tiles-jsp</artifactId>

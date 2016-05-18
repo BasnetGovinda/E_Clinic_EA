@@ -2,7 +2,11 @@ package com.e_clinic.controller;
 
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -11,9 +15,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.e_clinic.domain.Patient;
+import com.e_clinic.domain.User;
 import com.e_clinic.service.PatientService;
+import com.e_clinic.service.UserService;
 
 @Controller
 @RequestMapping(value = "/patient")
@@ -22,6 +29,9 @@ public class PatientController {
 	@Autowired
 	private PatientService patientService;
 
+	@Autowired
+	private UserService userService;
+	
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
 		// SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -44,15 +54,14 @@ public class PatientController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String addPatientPost(@ModelAttribute("patientForm") Patient patient) {
+	public String addPatientPost(@ModelAttribute("patientForm") Patient patient, @RequestParam("un") String un , @RequestParam("pw") String pw) {
 
-		// System.out.println(patient.getTempdate());
-		System.out.println(patient.getEmail());
+		JOptionPane.showMessageDialog(null, un);
 
+		userService.save(new User(un,pw));
 		patientService.save(patient);
 
 		return "redirect:/patient/list";
-		// System.out.println("test");
 	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -62,8 +71,12 @@ public class PatientController {
 
 		model.addAttribute("patient", pp);
 
+	      Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	      String name = auth.getName(); //get logged in username
+			
+	      JOptionPane.showMessageDialog(null, name);
+	      
 		return "patientList";
-
 	}
 
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)

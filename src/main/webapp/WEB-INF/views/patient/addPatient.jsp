@@ -18,9 +18,17 @@
 	<form:form modelAttribute="patientForm"
 		action="${pageContext.request.contextPath}/patient/add" method="POST">
 		
+		<tr> <td> <label>Username</label></td>
+		<td><input name="un" /> </td></tr>
+		
+		
+		<tr> <td> <label>Password</label></td>
+		<td><input type="password" name="pw" /></td></tr>
+		
 		<tr> <td> <label>First Name</label></td>
 		<td><form:input path="firstName" /> </td></tr>
-		
+		<tr></tr>
+		<br/>
 		
 		<tr> <td> <label>Last Name</label></td>
 		<td><form:input path="lastName" /></td></tr>
