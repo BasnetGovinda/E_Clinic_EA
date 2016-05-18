@@ -21,8 +21,7 @@
 <body>
 <div style="margin-left: 400px; margin-top:130pt; font: menu; font-size: larger;">   
 
-	<h1>Here Is Your Schedule For The Day</h1>
-	
+	<h1>Create Schedule </h1>
 		 <a  style="margin-left: 550px; margin-top:130pt;  font: menu; font-size:medium;" href="/E_Clinic_EA/j_spring_security_logout">logout</a>
 	
 	<form:form method="POST" action="schedules" modelAttribute="schedulle">

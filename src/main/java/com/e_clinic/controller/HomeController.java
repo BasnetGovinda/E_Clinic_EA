@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.e_clinic.domain.User;
 import com.e_clinic.service.UserService;
 
-import freemarker.core.ReturnInstruction.Return;
+import Utility.UserUtility;
 
 
 @Controller
@@ -32,15 +32,6 @@ public class HomeController {
 			
 	     List<User> users = userService.getallData();
 		
-	     BinaryOperator<User> binaryOperator = new BinaryOperator<User>() {
-			
-			@Override
-			public User apply(User t, User u) {
-				return  u;
-			}
-		};
-	     User user = users.stream().filter(u->u.getUsername().equalsIgnoreCase(name)).distinct().reduce(binaryOperator).get();
-
 	      model.addAttribute("user", name);
 		return "home";
 	}

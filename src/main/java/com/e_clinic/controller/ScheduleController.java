@@ -11,6 +11,8 @@ import javax.swing.JOptionPane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -26,7 +28,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.e_clinic.domain.Doctor;
 import com.e_clinic.domain.Schedule;
+import com.e_clinic.domain.User;
 import com.e_clinic.service.IScheduleService;
+import com.e_clinic.service.UserService;
 
 @Controller
 public class ScheduleController {
@@ -34,10 +38,15 @@ public class ScheduleController {
 	@Autowired
 	private IScheduleService scheduleService;
 
+	@Autowired
+	UserService userService;
+	
+	
 	@RequestMapping("/schedule")
 	public String schedule(Model model) {
 		Schedule s = new Schedule();
 		model.addAttribute("schedulle",s);
+		
 		return "schedule";
 	}
 	
@@ -53,6 +62,15 @@ public class ScheduleController {
 			final RedirectAttributes redirectAttributes) {
 		
 		schedule.setAvailable(true);
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	      String name = auth.getName();
+			
+	     List<User> users = userService.getallData();
+		
+	     User user = users.stream().filter(u->u.getUsername().equalsIgnoreCase(name)).distinct().reduce((t,u)->u).get();
+
+		schedule.setDoctorId(user.getdId());
 		scheduleService.save(schedule);
 		return "redirect:/showSchedule";
 	}

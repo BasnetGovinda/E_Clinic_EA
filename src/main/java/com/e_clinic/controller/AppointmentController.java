@@ -1,8 +1,12 @@
 package com.e_clinic.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,12 +15,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.e_clinic.domain.Appointment;
+import com.e_clinic.domain.User;
 import com.e_clinic.service.AppointmentService;
+import com.e_clinic.service.UserService;
 
 @Controller
 @RequestMapping(value = "/appointment")
 public class AppointmentController {
-
+	
+	
+	@Autowired
+	UserService userService;
+	
+	
 	@Autowired
 	private AppointmentService appointmentService;
 
@@ -48,19 +59,47 @@ public class AppointmentController {
 
 		appointmentService.save(pid, sid);
 
-		return "redirect:/appointments/getlistofappointment";
+		return "redirect:/appointment/getlistofappointment";
 	}
 
 	@RequestMapping(value = "/getlistofappointment", method = RequestMethod.GET)
 	public String getAllAppointment(Model model) {
 		List<Appointment> appointments = appointmentService.findall();
-		model.addAttribute("appointments", appointments);
+		
+		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	      String name = auth.getName();
+			
+	     List<User> users = userService.getallData();
+		
+	     User user = users.stream().filter(u->u.getUsername().equalsIgnoreCase(name)).distinct().reduce((t,u)->u).get();
+
+	     List<Appointment> filtered = new ArrayList<>();
+		if(user.getRole().equals("ROLE_ADMIN"))
+				{
+			filtered = 
+					appointments.
+					stream().
+					filter(a->a.getDoctorId().getId()== user.getdId().getId() ).
+					collect(Collectors.toList());
+				}
+		else if(user.getRole().equals("ROLE_USER"))
+		{
+		filtered = 
+				appointments.
+				stream().
+				filter(a->a.getPatientId().getId()== user.getpId().getId() ).
+				collect(Collectors.toList());
+		}
+		
+		
+		model.addAttribute("appointments", filtered);
 		return "appointmentlist";
 	}
 	
 	@RequestMapping(value = "/getlistofappointment/{id}", method = RequestMethod.GET)
-	public String getAllAppointmentId(Model model) {
+	public String getAllAppointmentId(@PathVariable int id, Model model) {
 		List<Appointment> appointments = appointmentService.findall();
+		
 		model.addAttribute("appointments", appointments);
 		return "appointmentlist";
 	}

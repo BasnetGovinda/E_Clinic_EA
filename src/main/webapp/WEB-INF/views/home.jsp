@@ -24,10 +24,12 @@
                    <table>
                    <tr>
                    
+                   <sec:authorize access="hasRole('ROLE_ADMIN')" >
                          <td>
   							  <a href="showSchedule"  style="margin-right: 20pt;"> My Schedules </a> </td>
   						<td>
-  						
+  				   </sec:authorize>
+  				   
                        <td>
   							  <a href="appointment/getlistofappointment"  style="margin-right: 20pt;"> Appointmetns </a> </td>
   						<td>	  

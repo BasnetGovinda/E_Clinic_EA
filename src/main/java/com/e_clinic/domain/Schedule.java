@@ -18,7 +18,7 @@ public class Schedule {
 	@Id
 	@GeneratedValue
 	private int id;
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private Doctor doctorId;
 	//@Temporal(TemporalType.DATE)
 	private Date date;

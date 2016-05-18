@@ -14,13 +14,14 @@
     <debug/>
     
     <security:http use-expressions="true">
-       <!--  <security:intercept-url pattern="/home" method="GET" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+    
+<!--         <security:intercept-url pattern="/home" method="GET" access="IS_AUTHENTICATED_ANONYMOUSLY" />
         <security:intercept-url pattern="/patient/add" method="POST" access="IS_AUTHENTICATED_ANONYMOUSLY" />
-          <security:intercept-url pattern="/patient/list" method="GET" access="ROLE_ADMIN" />
         <security:intercept-url pattern="/records/doctor/**" method="GET" access="IS_AUTHENTICATED_ANONYMOUSLY" />
         <security:intercept-url pattern="/login.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <security:intercept-url pattern="/loginfailed.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
- -->        
+       -->  
+        
         <security:form-login login-page="/login.jsp" 
         			authentication-failure-url="/loginfailed.jsp" 
         			password-parameter="password"

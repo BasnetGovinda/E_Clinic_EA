@@ -55,8 +55,6 @@ public class AppointmentServiceImpl implements AppointmentService {
 			
 	     User user = users.stream().filter(u->u.getUsername().equalsIgnoreCase(name)).distinct().reduce((t,u)->u).get();
 	     
-	      JOptionPane.showMessageDialog(null, user.getRole()+" --- "+ user.getpId().getId());
-	      
 		Patient PP = patientDAO.findOne(user.getpId().getId());
 		Appointment app = new Appointment(user.getpId(), doctorDao.findOne(pid), ss.getDate());
 		ss.setAvailable(false);

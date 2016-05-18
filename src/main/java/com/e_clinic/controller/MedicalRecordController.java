@@ -52,17 +52,7 @@ public class MedicalRecordController {
 	@RequestMapping(value = "/patient/{id}", method = RequestMethod.GET)
 	public String showEdit(@PathVariable int id, Model model) {
 		
-		Doctor doctor = new Doctor();
-		doctor.setEmail("z@c.com");
-		doctor.setDateOfBirth(new Date());
-		doctor.setFirstName("fn");
-		doctor.setLastName("ln");
-		doctor.setSepcialization("spec");
-		
-		doctorService.save(doctor);
-		int doctor_id = doctor.getId();
-		
-		return "redirect:/records/patient/list/"+doctor_id+"/"+id;
+		return "redirect:/records/patient/list/54/"+id;
 	}
 	
 
